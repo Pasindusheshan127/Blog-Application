@@ -3,6 +3,7 @@ import articleContente from "./Article-content";
 
 //components
 import Articles from "../components/Articles";
+import NotFound from "./NotFound";
 
 const Article = () => {
   const { name } = useParams();
@@ -10,7 +11,7 @@ const Article = () => {
     return article.name === name;
   });
 
-  if (!article) return <h1>Article not found</h1>;
+  if (!article) return <NotFound />;
   const otherArticles = articleContente.filter(
     (article) => article.name !== name
   );
