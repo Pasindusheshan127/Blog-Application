@@ -1,6 +1,9 @@
 import { useParams } from "react-router";
 import articleContente from "./Article-content";
 
+//components
+import Articles from "../components/Articles";
+
 const Article = () => {
   const { name } = useParams();
   const article = articleContente.find((article) => {
@@ -8,7 +11,9 @@ const Article = () => {
   });
 
   if (!article) return <h1>Article not found</h1>;
-
+  const otherArticles = articleContente.filter(
+    (article) => article.name !== name
+  );
   return (
     <div>
       <h1 className="my-6 text-2xl font-bold text-gray-900 sm:text-4xl">
@@ -19,6 +24,12 @@ const Article = () => {
           {paragraph}
         </p>
       ))}
+      <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
+        Other Articles
+      </h1>
+      <div className="flex flex-wrap">
+        <Articles articles={otherArticles} />
+      </div>
     </div>
   );
 };
